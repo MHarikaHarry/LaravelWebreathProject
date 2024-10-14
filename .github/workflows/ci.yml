@@ -61,7 +61,7 @@ jobs:
       run: php artisan migrate 
       working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
     - name: Start Laravel Development Server
-      run: php artisan serve -
+      run: php artisan serve 
       working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
       
     - name: Set up AWS credentials

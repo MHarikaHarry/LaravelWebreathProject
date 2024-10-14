@@ -44,11 +44,16 @@ jobs:
         echo "DB_USERNAME=neondb_owner" >> .env
         echo "DB_PASSWORD=endpoint=ep-summer-thunder-a4eytc3i\$8CfHmgUpw0GR" >> .env
         echo "DB_SSLMODE=require" >> .env
-
-      
-    - name: Run locally
+    - name: Install Composer Dependencies
+      run: composer install
+      working-directory: ./LaravelWebreathProject
+    - name: Run Migrations
+      run: php artisan migrate --force
+    - name: Start Laravel Development Server
       run: php artisan serve
-
+    
+      
+    
     - name: Deploy to AWS
       run: |
         cd terraform

@@ -46,7 +46,7 @@ jobs:
         echo "DB_SSLMODE=require" >> .env
 
     - name: Run cache
-       run: |
+      run: |
          cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject && php artisan config:cache
 
     - name: Run Migrations

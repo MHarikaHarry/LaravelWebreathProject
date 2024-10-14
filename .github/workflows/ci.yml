@@ -62,9 +62,12 @@ jobs:
       working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
     - name: Start Laravel Development Server
       run: |
-          nohup php artisan serve --host=127.0.0.1 --port=8000 &
-          sleep 5 run: php artisan serve
+            php artisan serve --host=127.0.0.1 --port=8000
+            nohup php artisan serve --host=127.0.0.1 --port=8000 > /dev/null 2>&1 &
+            sleep 5  # Sleep for 5 seconds
+          
       working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
+      
     - name: Set up AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:

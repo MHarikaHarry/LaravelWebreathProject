@@ -30,12 +30,10 @@ jobs:
     - name: Check Composer Version
       run: composer -v
 
-    - name: Install Dependencies
-      run: composer install
 
     - name: Set up .env with PostgreSQL (Neon)
       run: |
-        cp .env.example .env
+        touch .env
         echo "DB_CONNECTION=pgsql" >> .env
         echo "DB_HOST=ep-summer-thunder-a4eytc3i.us-east-1.aws.neon.tech" >> .env
         echo "DB_PORT=5432" >> .env

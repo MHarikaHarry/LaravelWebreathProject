@@ -21,6 +21,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: List Current Directory
+      run: ls -la
 
     # Check if PHP is already installed
     - name: Check PHP Version

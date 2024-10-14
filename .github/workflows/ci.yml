@@ -45,7 +45,7 @@ jobs:
         echo "DB_PORT=5432" >> .env
         echo "DB_DATABASE=neondb" >> .env
         echo "DB_USERNAME=neondb_owner" >> .env
-        echo "DB_PASSWORD=endpoint=ep-summer-thunder-a4eytc3i\$8CfHmgUpw0GR" >> .env
+        echo "DB_PASSWORD=8CfHmgUpw0GR" >> .env
         echo "DB_SSLMODE=require" >> .env
         
     - name: Install Composer Dependencies
@@ -54,6 +54,8 @@ jobs:
         
     - name: Install Composer Dependencies
       run: composer install
+    - name: clear cache
+      run: php artisan config:cache
       working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
     - name: Run Migrations
       run: php artisan migrate 

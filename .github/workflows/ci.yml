@@ -46,13 +46,13 @@ jobs:
         echo "DB_SSLMODE=require" >> .env
     - name: Install Composer Dependencies
       run: composer install
-      working-directory: LaravelWebreathProject
+      working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
     - name: Run Migrations
       run: php artisan migrate --force
-      working-directory: LaravelWebreathProject
+      working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
     - name: Start Laravel Development Server
       run: php artisan serve
-      working-directory: LaravelWebreathProject
+      working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
     
       
     

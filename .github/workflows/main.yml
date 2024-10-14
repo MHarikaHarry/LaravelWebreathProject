@@ -3,6 +3,7 @@ name: Laravel CI/CD Pipeline
 on:
   push:
     branches:
+      - master
       - main
 
 jobs:
@@ -47,7 +48,7 @@ jobs:
 
     - name: Run cache
       run: |
-         cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject && php artisan config:cache
+         cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject/ && php artisan config:cache
 
     - name: Run Migrations
       run: cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject && php artisan migrate

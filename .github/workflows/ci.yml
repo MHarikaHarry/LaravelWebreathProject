@@ -36,7 +36,7 @@ jobs:
 
     - name: Set up .env with PostgreSQL (Neon)
       run: |
-        touch .env
+        cp .env.example .env
         echo "DB_CONNECTION=pgsql" >> .env
         echo "DB_HOST=ep-summer-thunder-a4eytc3i.us-east-1.aws.neon.tech" >> .env
         echo "DB_PORT=5432" >> .env
@@ -46,15 +46,11 @@ jobs:
         echo "DB_SSLMODE=require" >> .env
 
       
-    - name: Run cache
-      run: |
-         cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject && php artisan config:cache
-
     - name: Run Migrations
-      run: cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject && php artisan migrate
+      run: php artisan migrate --env=testing
 
-    - name: Run server
-      run: cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject && php artisan serve
+    - name: Run Tests
+      run: php artisan test
 
     - name: Deploy to AWS
       run: |

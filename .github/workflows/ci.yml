@@ -59,12 +59,18 @@ jobs:
     - name: Run Migrations
       run: php artisan migrate 
       working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
+  #  - name: Start Laravel Development Server
+   #   run: |
+    #       php artisan serve  
+      #     sleep 120  # Wait for 120 seconds (2 minutes)
+     #      pkill -f "php artisan serve"  # Kill the server process
     - name: Start Laravel Development Server
       run: |
-           php artisan serve  
-           sleep 120  # Wait for 120 seconds (2 minutes)
-           pkill -f "php artisan serve"  # Kill the server process
-      
+        nohup php artisan serve --host=0.0.0.0 --port=8000 > /dev/null 2>&1 &
+     #   sleep 5  # Wait for the server to start
+    - name: Stop Laravel Development Server
+      run: |
+        pkill -f "php artisan serve" || echo "No server running"
       working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
     - name: Run Tests
       run: |

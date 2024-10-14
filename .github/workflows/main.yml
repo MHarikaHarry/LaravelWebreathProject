@@ -21,6 +21,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Print Current Directory
+      run: pwd
     - name: List Current Directory
       run: ls -la
 
@@ -44,7 +46,7 @@ jobs:
         echo "DB_SSLMODE=require" >> .env
 
     - name: Change to Project Directory
-      run: cd LaravelWebreathProject
+      run: cd LaravelWebreathProject/artisan
 
     - name: Run cache
       run: php artisan config:cache

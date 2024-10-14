@@ -60,10 +60,17 @@ jobs:
       run: php artisan migrate 
       working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
     - name: Start Laravel Development Server
-      run: php artisan serve          
-          
-      working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
+      run: |
+           php artisan serve  
+           sleep 120  # Wait for 120 seconds (2 minutes)
+           pkill -f "php artisan serve"  # Kill the server process
       
+      working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
+    - name: Run Tests
+      run: |
+        php artisan test --testsuite=Feature  # Run only feature tests
+        # php artisan test --testsuite=Unit     # Run only unit tests
+       
     - name: Set up AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:

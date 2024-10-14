@@ -61,9 +61,7 @@ jobs:
       run: php artisan migrate 
       working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
     - name: Start Laravel Development Server
-      run: |
-          nohup php artisan serve --host=0.0.0.0 --port=8000 > /dev/null 2>&1 &
-         
+      run: php artisan serve          
           
       working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
       

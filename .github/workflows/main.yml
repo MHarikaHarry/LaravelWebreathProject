@@ -44,7 +44,10 @@ jobs:
         echo "DB_USERNAME=neondb_owner" >> .env
         echo "DB_PASSWORD=endpoint=ep-summer-thunder-a4eytc3i\$8CfHmgUpw0GR" >> .env
         echo "DB_SSLMODE=require" >> .env
-
+        
+    - name: Install Dependencies
+      run: composer install
+      
     - name: Run cache
       run: |
          cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject && php artisan config:cache

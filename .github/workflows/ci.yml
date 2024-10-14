@@ -56,7 +56,7 @@ jobs:
       run: composer install
       working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
     - name: Run Migrations
-      run: php artisan migrate --force
+      run: php artisan migrate 
       working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
     - name: Start Laravel Development Server
       run: php artisan serve

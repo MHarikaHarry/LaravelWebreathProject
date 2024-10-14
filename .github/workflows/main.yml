@@ -45,20 +45,14 @@ jobs:
         echo "DB_PASSWORD=endpoint=ep-summer-thunder-a4eytc3i\$8CfHmgUpw0GR" >> .env
         echo "DB_SSLMODE=require" >> .env
 
-    - name: Change to Project Directory
-      run: cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
-
     - name: Run cache
-      run: cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
-          php artisan config:cache
+      run: cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject && php artisan config:cache
 
     - name: Run Migrations
-      run: cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
-           php artisan migrate
+      run: cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject && php artisan migrate
 
     - name: Run server
-      run: cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
-           php artisan serve
+      run: cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject && php artisan serve
 
     - name: Deploy to AWS
       run: |

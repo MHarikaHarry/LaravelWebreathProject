@@ -49,12 +49,15 @@ jobs:
       run: cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
 
     - name: Run cache
+      run: cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
       run: php artisan config:cache
 
     - name: Run Migrations
+      run: cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
       run: php artisan migrate
 
     - name: Run server
+      run: cd /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
       run: php artisan serve
 
     - name: Deploy to AWS

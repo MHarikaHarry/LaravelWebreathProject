@@ -30,9 +30,6 @@ jobs:
     - name: Check Composer Version
       run: composer -v
 
-    - name: Install Dependencies
-      run: composer install
-
     - name: Set up .env with PostgreSQL (Neon)
       run: |
         cp .env.example .env

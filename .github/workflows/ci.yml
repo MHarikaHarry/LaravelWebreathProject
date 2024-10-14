@@ -1,0 +1,57 @@
+name: Laravel CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: neondb
+          POSTGRES_USER: neondb_owner
+          POSTGRES_PASSWORD: endpoint=ep-summer-thunder-a4eytc3i$8CfHmgUpw0GR
+        ports:
+          - 5432:5432
+
+    steps:
+    - uses: actions/checkout@v2
+
+    # Check if PHP is already installed
+    - name: Check PHP Version
+      run: php -v
+
+    # Check if Composer is already installed
+    - name: Check Composer Version
+      run: composer -v
+
+    - name: Install Dependencies
+      run: composer install
+
+    - name: Set up .env with PostgreSQL (Neon)
+      run: |
+        cp .env.example .env
+        echo "DB_CONNECTION=pgsql" >> .env
+        echo "DB_HOST=ep-summer-thunder-a4eytc3i.us-east-1.aws.neon.tech" >> .env
+        echo "DB_PORT=5432" >> .env
+        echo "DB_DATABASE=neondb" >> .env
+        echo "DB_USERNAME=neondb_owner" >> .env
+        echo "DB_PASSWORD=endpoint=ep-summer-thunder-a4eytc3i\$8CfHmgUpw0GR" >> .env
+        echo "DB_SSLMODE=require" >> .env
+
+    - name: Run Migrations
+      run: php artisan migrate --env=testing
+
+    - name: Run Tests
+      run: php artisan test
+    - name: Deploy to AWS
+      run: |
+        cd terraform
+        terraform init
+        terraform apply -auto-approve
+

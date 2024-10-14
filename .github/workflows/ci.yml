@@ -61,11 +61,11 @@ jobs:
       run: php artisan migrate 
       working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
     - name: Start Laravel Development Server
+    
       run: |
-            php artisan serve --host=127.0.0.1 --port=8000
-            nohup php artisan serve --host=127.0.0.1 --port=8000 > /dev/null 2>&1 &
-            sleep 5  # Sleep for 5 seconds
-          
+          nohup php artisan serve --host=127.0.0.1 --port=8000 > /dev/null 2>&1 &
+          sleep 300  # Sleep for 5 minutes (300 seconds)
+          pkill -f "php artisan serve"  # Kill the Laravel server
       working-directory: /home/runner/work/LaravelWebreathProject/LaravelWebreathProject
       
     - name: Set up AWS credentials
@@ -75,7 +75,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       
- 
     - name: Deploy to AWS
       run: |
         cd terraform

@@ -28,7 +28,7 @@ jobs:
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-      php-version: '8.2'
+        php-version: '8.2'
     # Check if PHP is already installed
     - name: Check PHP Version
       run: php -v
